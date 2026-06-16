@@ -16,7 +16,7 @@ jobs:
           relative_project_path: ./
       
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: game-apk
           path: ./*.apk
