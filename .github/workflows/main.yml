@@ -20,4 +20,3 @@ jobs:
         with:
           name: game-apk
           path: ./*.apk
-          
