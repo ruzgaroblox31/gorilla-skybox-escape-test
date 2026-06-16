@@ -9,12 +9,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Download Godot Engine
+      - name: Download and Setup Godot
         run: |
           wget -q https://github.com/godotengine/godot/releases/download/4.2.2-stable/Godot_v4.2.2-stable_linux.x86_64.zip
           unzip -q Godot_v4.2.2-stable_linux.x86_64.zip
           mv Godot_v4.2.2-stable_linux.x86_64 godot
           chmod +x godot
+          echo "Godot indirildi ve yetki verildi."
 
       - name: Download Export Templates
         run: |
@@ -22,10 +23,13 @@ jobs:
           unzip -q Godot_v4.2.2-stable_export_templates.tpz
           mkdir -p ~/.local/share/godot/export_templates/4.2.2.stable
           mv templates/* ~/.local/share/godot/export_templates/4.2.2.stable/
+          echo "Şablonlar kuruldu."
 
       - name: Export Project
         run: |
           mkdir build
+          # Hata olursa nerede olduğumuzu görelim diye listeliyoruz
+          ls -R
           ./godot --headless --export-release "Linux" build/game.x86_64
 
       - name: Upload Build Artifact
