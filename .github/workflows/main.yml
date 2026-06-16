@@ -26,14 +26,10 @@ jobs:
       - name: Export Project
         run: |
           mkdir build
-          # Burada ismi senin ayar dosyasındaki isimle değiştirdim
           ./godot --headless --export-release "skybox escape or GMH" build/game.apk
 
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
-        with:
-          name: game-build
-          path: build/
         with:
           name: game-build
           path: build/
